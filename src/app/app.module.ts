@@ -11,6 +11,7 @@ import { EntityDataModule } from '@ngrx/data';
 import { entityConfig } from './entity-metadata';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppStore } from './store/app.store';
+import { PostModule } from './modules/post/post.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,6 +26,7 @@ import { AppStore } from './store/app.store';
     EntityDataModule.forRoot(entityConfig),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     AppStore,
+    PostModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
