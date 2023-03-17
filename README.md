@@ -4,7 +4,7 @@ AngularProScaffold is a robust and scalable Angular project template that combin
 
 ## :star2: Features
 
-- :zap: Angular 12+ support
+- :zap: Angular 15+ support
 - :bar_chart: State management with NgRx
 - :art: Angular Material for a polished UI/UX experience
 - :key: Authentication services integration
