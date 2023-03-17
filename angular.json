@@ -111,7 +111,7 @@
   },
   "cli": {
     "schematicCollections": [
-      "@ngrx/schematics"
+      "@schematics/angular"
     ]
   }
 }
