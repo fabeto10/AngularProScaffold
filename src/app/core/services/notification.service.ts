@@ -5,6 +5,4 @@ import { Injectable } from '@angular/core';
 })
 export class NotificationService {
   constructor() {}
-
-  // Implement your notification methods here.
 }
