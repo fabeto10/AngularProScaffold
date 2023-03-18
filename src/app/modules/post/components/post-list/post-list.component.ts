@@ -27,4 +27,8 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(loadPosts());
   }
+
+  hasUnsavedChanges(): boolean {
+    return false;
+  }
 }
