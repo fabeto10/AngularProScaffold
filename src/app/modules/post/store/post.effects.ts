@@ -15,7 +15,10 @@ export class PostEffects {
       switchMap(() =>
         this.apiService.getPosts().pipe(
           // tap((posts: Post[]) => console.log('Posts loaded:', posts)),
-          map((posts: Post[]) => PostActions.loadPostsSuccess({ posts })),
+
+          map((posts: Post[]) =>
+            PostActions.loadPostsSuccess({ posts: posts.slice(0, 10) })
+          ),
           catchError((error) => of(PostActions.loadPostsFailure({ error })))
         )
       )

@@ -12,6 +12,7 @@ import { Post } from '../../model/post.model';
 import { deletePost, updatePost } from '../../store/post.actions';
 import { Store } from '@ngrx/store';
 import { PostState } from '../../store/post.reducer';
+import { Log } from '../../../../shared/decorators/log.decorator';
 
 @Component({
   selector: 'app-post-item',
@@ -34,6 +35,7 @@ export class PostItemComponent implements OnChanges {
     this.store.dispatch(updatePost({ post }));
   }
 
+  @Log
   onDelete(id: number): void {
     this.store.dispatch(deletePost({ id }));
   }

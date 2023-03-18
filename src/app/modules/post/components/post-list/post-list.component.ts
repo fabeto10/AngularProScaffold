@@ -49,4 +49,8 @@ export class PostListComponent implements OnInit {
   hasUnsavedChanges(): boolean {
     return false;
   }
+
+  trackByPostId(index: number, post: Post): number {
+    return post.id;
+  }
 }
