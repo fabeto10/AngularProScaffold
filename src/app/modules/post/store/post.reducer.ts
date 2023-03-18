@@ -1,8 +1,9 @@
 import { createReducer, on } from '@ngrx/store';
 import { loadPostsSuccess, loadPostsFailure } from './post.actions';
+import { Post } from '../model/post.model';
 
 export interface PostState {
-  posts: any[];
+  posts: Post[];
   error: any;
 }
 

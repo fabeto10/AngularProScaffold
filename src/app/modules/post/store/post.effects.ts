@@ -5,6 +5,7 @@ import { of } from 'rxjs';
 
 import { ApiService } from '../../../core/services/api.service';
 import * as PostActions from './post.actions';
+import { Post } from '../model/post.model';
 
 @Injectable()
 export class PostEffects {
@@ -13,7 +14,7 @@ export class PostEffects {
       ofType(PostActions.loadPosts),
       switchMap(() =>
         this.apiService.getPosts().pipe(
-          map((posts) => PostActions.loadPostsSuccess({ posts })),
+          map((posts: Post[]) => PostActions.loadPostsSuccess({ posts })),
           catchError((error) => of(PostActions.loadPostsFailure({ error })))
         )
       )
