@@ -10,6 +10,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AppStore } from './store/app.store';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { PostModule } from './modules/post/post.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,6 +24,7 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     StoreRouterConnectingModule.forRoot(),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: !isDevMode() }),
     AppStore,
+    PostModule,
   ],
   providers: [
     {
