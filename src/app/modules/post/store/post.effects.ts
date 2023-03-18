@@ -14,7 +14,7 @@ export class PostEffects {
       ofType(PostActions.loadPosts),
       switchMap(() =>
         this.apiService.getPosts().pipe(
-          tap((posts: Post[]) => console.log('Posts loaded:', posts)),
+          // tap((posts: Post[]) => console.log('Posts loaded:', posts)),
           map((posts: Post[]) => PostActions.loadPostsSuccess({ posts })),
           catchError((error) => of(PostActions.loadPostsFailure({ error })))
         )
