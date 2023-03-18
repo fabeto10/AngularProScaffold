@@ -17,7 +17,7 @@ export class PostEffects {
           // tap((posts: Post[]) => console.log('Posts loaded:', posts)),
 
           map((posts: Post[]) =>
-            PostActions.loadPostsSuccess({ posts: posts.slice(0, 10) })
+            PostActions.loadPostsSuccess({ posts: posts })
           ),
           catchError((error) => of(PostActions.loadPostsFailure({ error })))
         )

@@ -1,6 +1,32 @@
 <div class="wrapper">
   <h1>Posts</h1>
-  <button mat-raised-button color="primary" (click)="onCreate()">Create</button>
+  <h3>New Post</h3>
+  <form [formGroup]="postForm" (ngSubmit)="onCreate()" class="postForm">
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>ID</mat-label>
+        <input matInput formControlName="id" type="number" />
+        <mat-error *ngIf="postForm.get('id')?.hasError('required')">
+          ID is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div>
+      <mat-form-field class="example-full-width">
+        <mat-label>User ID</mat-label>
+        <input matInput formControlName="userId" type="number" />
+        <mat-error *ngIf="postForm.get('userId')?.hasError('required')">
+          User ID is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <app-title-body-input formControlName="titleBody"></app-title-body-input>
+
+    <button type="submit" mat-raised-button color="primary">Create</button>
+  </form>
+
   <mat-list class="list-wrapping">
     <app-post-item
       *ngFor="let post of posts$ | async; trackBy: trackByPostId"

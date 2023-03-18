@@ -4,12 +4,10 @@ import { Observable } from 'rxjs';
 
 import { createPost, loadPosts } from '../../store/post.actions';
 import { PostState, selectAll } from '../../store/post.reducer';
-import { CommonModule } from '@angular/common';
 import { PostItemComponent } from '../post-item/post-item.component';
-import { MatListModule } from '@angular/material/list';
 import { PostModule } from '../../post.module';
 import { Post } from '../../model/post.model';
-import { PostMaterialModule } from '../../post-material.module';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-post-list',
@@ -17,19 +15,22 @@ import { PostMaterialModule } from '../../post-material.module';
   styleUrls: ['./post-list.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    CommonModule,
-    PostItemComponent,
-    MatListModule,
-    PostModule,
-    PostMaterialModule,
-  ],
+  imports: [PostItemComponent, PostModule],
 })
 export class PostListComponent implements OnInit {
+  postForm: FormGroup;
   posts$: Observable<Post[]>;
 
-  constructor(private store: Store<{ post: PostState }>) {
+  constructor(
+    private store: Store<{ post: PostState }>,
+    private fb: FormBuilder
+  ) {
     this.posts$ = store.select((state) => selectAll(state.post));
+    this.postForm = this.fb.group({
+      id: [null, Validators.required],
+      titleBody: [{ title: '', body: '' }, Validators.required],
+      userId: [null, Validators.required],
+    });
   }
 
   ngOnInit(): void {
@@ -37,11 +38,16 @@ export class PostListComponent implements OnInit {
   }
 
   onCreate(): void {
+    if (this.postForm.invalid) {
+      return;
+    }
+
+    const { id, userId, titleBody } = this.postForm.value;
     const post: Post = {
-      id: 101,
-      title: 'test post',
-      body: 'test post body',
-      userId: 1,
+      id,
+      title: titleBody.title,
+      body: titleBody.body,
+      userId,
     };
     this.store.dispatch(createPost({ post }));
   }

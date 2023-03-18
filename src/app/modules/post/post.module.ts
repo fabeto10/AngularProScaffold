@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
-import { PostApiService } from './services/api.service';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { PostMaterialModule } from './post-material.module';
+import { TitleBodyInputComponent } from './inputs/title-body-input/title-body-input.component';
 
 @NgModule({
-  declarations: [],
-  imports: [],
-  exports: [],
+  declarations: [TitleBodyInputComponent],
+  imports: [CommonModule, ReactiveFormsModule, PostMaterialModule],
+  exports: [
+    CommonModule,
+    ReactiveFormsModule,
+    PostMaterialModule,
+    TitleBodyInputComponent,
+  ],
   providers: [],
 })
 export class PostModule {}
