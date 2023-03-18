@@ -6,15 +6,18 @@ import { HttpClient } from '@angular/common/http';
 
 import { AuthService } from '../../core/services/auth.service';
 import { login, loginSuccess, loginFailure, logout } from './auth.actions';
+import { TokenService } from 'src/app/core/services/token.service';
+import { environment } from 'src/environments/environment';
 
 @Injectable()
 export class AuthEffects {
-  private apiUrl = 'https://your-auth-api-url';
+  private readonly baseUrl: string = environment.apiUrl;
 
   constructor(
     private actions$: Actions,
     private authService: AuthService,
-    private http: HttpClient
+    private http: HttpClient,
+    private tokenService: TokenService
   ) {}
 
   login$ = createEffect(() =>
@@ -22,8 +25,12 @@ export class AuthEffects {
       ofType(login),
       exhaustMap(({ email, password }) =>
         this.http
-          .post<{ token: string }>(`${this.apiUrl}/login`, { email, password })
+          .post<{ token: string }>(`${this.baseUrl}/login`, { email, password })
           .pipe(
+            tap((response) => {
+              const { token } = response;
+              this.tokenService.setToken(token);
+            }),
             map((response) => loginSuccess({ token: response.token })),
             catchError((error) => of(loginFailure({ error })))
           )
