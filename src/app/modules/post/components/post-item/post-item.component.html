@@ -1,4 +1,12 @@
-<mat-list-item lines="3">
-  <span matListItemTitle>{{ post.title }}</span>
-  <div appFirstLetterHighlight>{{ post.body | firstLetterUppercase }}</div>
-</mat-list-item>
+<div class="wrapper">
+  <mat-list-item lines="3">
+    <span matListItemTitle class="title">{{ post.title }}</span>
+    <div appFirstLetterHighlight>{{ post.body | firstLetterUppercase }}</div>
+  </mat-list-item>
+  <button mat-raised-button color="accent" (click)="onUpdate(post)">
+    Update
+  </button>
+  <button mat-raised-button color="warn" (click)="onDelete(post.id)">
+    Delete
+  </button>
+</div>

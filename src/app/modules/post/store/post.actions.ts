@@ -30,7 +30,7 @@ export const createPostFailure = createAction(
 
 export const updatePost = createAction(
   '[Post] Update Post',
-  props<{ id: number; post: Partial<Post> }>()
+  props<{ post: Partial<Post> }>()
 );
 
 export const updatePostSuccess = createAction(
