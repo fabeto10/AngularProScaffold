@@ -2,7 +2,7 @@ import { NgModule, importProvidersFrom } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { StoreModule, provideState } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { postReducer } from './modules/post/store/post.reducer';
+import { PostReducer } from './modules/post/store/post.reducer';
 import { PostEffects } from './modules/post/store/post.effects';
 import { PostListComponent } from './modules/post/components/post-list/post-list.component';
 import { authGuard } from './core/guards/auth.guard';
@@ -18,7 +18,7 @@ const routes: Routes = [
     providers: [
       importProvidersFrom(
         // register feature reducer
-        StoreModule.forFeature('post', postReducer),
+        StoreModule.forFeature('post', PostReducer),
         // run feature effects
         EffectsModule.forFeature([PostEffects])
       ),

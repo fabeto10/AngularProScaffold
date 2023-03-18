@@ -3,11 +3,12 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 import { loadPosts } from '../../store/post.actions';
-import { PostState } from '../../store/post.reducer';
+import { PostState, selectAll } from '../../store/post.reducer';
 import { CommonModule } from '@angular/common';
 import { PostItemComponent } from '../post-item/post-item.component';
 import { MatListModule } from '@angular/material/list';
 import { PostModule } from '../../post.module';
+import { Post } from '../../model/post.model';
 
 @Component({
   selector: 'app-post-list',
@@ -18,10 +19,10 @@ import { PostModule } from '../../post.module';
   imports: [CommonModule, PostItemComponent, MatListModule, PostModule],
 })
 export class PostListComponent implements OnInit {
-  posts$: Observable<any[]>;
+  posts$: Observable<Post[]>;
 
   constructor(private store: Store<{ post: PostState }>) {
-    this.posts$ = store.select((state) => state.post.posts);
+    this.posts$ = store.select((state) => selectAll(state.post));
   }
 
   ngOnInit(): void {

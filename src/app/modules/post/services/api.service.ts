@@ -14,4 +14,16 @@ export class PostApiService {
   getPosts(): Observable<Post[]> {
     return this.http.get<Post[]>(`${this.baseUrl}/posts`);
   }
+
+  createPost(post: Post): Observable<Post> {
+    return this.http.post<Post>(`${this.baseUrl}/posts`, post);
+  }
+
+  updatePost(id: number, post: Post): Observable<Post> {
+    return this.http.put<Post>(`${this.baseUrl}/posts/${id}`, post);
+  }
+
+  deletePost(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/posts/${id}`);
+  }
 }

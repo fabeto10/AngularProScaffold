@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Input,
+  OnChanges,
+  SimpleChanges,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PostMaterialModule } from '../../post-material.module';
 import { SharedModule } from 'src/app/shared/shared.module';
@@ -12,6 +18,11 @@ import { Post } from '../../model/post.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, PostMaterialModule, SharedModule],
 })
-export class PostItemComponent {
+export class PostItemComponent implements OnChanges {
   @Input() post!: Post;
+  constructor() {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('post item changes: ', changes);
+  }
 }

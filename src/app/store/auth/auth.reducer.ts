@@ -11,7 +11,7 @@ export const initialState: AuthState = {
   error: null,
 };
 
-export const authReducer = createReducer(
+export const AuthReducer = createReducer(
   initialState,
   on(loginSuccess, (state, { token }) => ({ ...state, token })),
   on(loginFailure, (state, { error }) => ({ ...state, error })),
@@ -19,5 +19,5 @@ export const authReducer = createReducer(
 );
 
 export function reducer(state: AuthState | undefined, action: Action) {
-  return authReducer(state, action);
+  return AuthReducer(state, action);
 }
