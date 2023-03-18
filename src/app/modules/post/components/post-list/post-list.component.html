@@ -1,9 +1,9 @@
 <div>
   <h1>Posts</h1>
   <mat-list class="list-wrapping">
-    <mat-list-item lines="3" *ngFor="let post of posts$ | async">
-      <span matListItemTitle>{{ post.title }}</span>
-      <div appFirstLetterHighlight>{{ post.body | firstLetterUppercase }}</div>
-    </mat-list-item>
+    <app-post-item
+      *ngFor="let post of posts$ | async"
+      [post]="post"
+    ></app-post-item>
   </mat-list>
 </div>

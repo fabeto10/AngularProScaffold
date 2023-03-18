@@ -5,16 +5,16 @@ import { Observable } from 'rxjs';
 import { loadPosts } from '../../store/post.actions';
 import { PostState } from '../../store/post.reducer';
 import { CommonModule } from '@angular/common';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { PostMaterialModule } from '../../post-material.module';
+import { PostItemComponent } from '../post-item/post-item.component';
+import { MatListModule } from '@angular/material/list';
 
 @Component({
   selector: 'app-post-list',
   templateUrl: './post-list.component.html',
   styleUrls: ['./post-list.component.scss'],
   standalone: true,
-  imports: [CommonModule, PostMaterialModule, SharedModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, PostItemComponent, MatListModule],
 })
 export class PostListComponent implements OnInit {
   posts$: Observable<any[]>;
